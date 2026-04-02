@@ -1,14 +1,16 @@
 {
   "name": "RETROCADE",
   "short_name": "RETROCADE",
-  "description": "Retro arcade game console — 6 classic games in your browser",
+  "description": "Retro arcade game console \u2014 6 classic games in your browser",
   "display": "fullscreen",
-  "orientation": "landscape",
   "background_color": "#001100",
   "theme_color": "#001100",
   "start_url": "./index.html",
   "scope": "./",
-  "categories": ["games", "entertainment"],
+  "categories": [
+    "games",
+    "entertainment"
+  ],
   "icons": [
     {
       "src": "./icon.svg",
