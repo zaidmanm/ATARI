@@ -21,7 +21,7 @@
 //
 // ═══════════════════════════════════════════════════════════════════
 
-const VERSION = 'retrocade-3';   // ← BUMP THIS NUMBER TO PUSH AN UPDATE
+const VERSION = 'retrocade-4';   // ← BUMP THIS NUMBER TO PUSH AN UPDATE
 
 // Files to pre-cache on install (relative to the sw.js location)
 const PRECACHE = [
