@@ -21,14 +21,15 @@
 //
 // ═══════════════════════════════════════════════════════════════════
 
-const VERSION = 'retrocade-v8';   // ← BUMP THIS NUMBER TO PUSH AN UPDATE
+const VERSION = 'retrocade-v2';   // ← BUMP THIS NUMBER TO PUSH AN UPDATE
 
 // Files to pre-cache on install (relative to the sw.js location)
 const PRECACHE = [
   './',
   './index.html',
-  './manifest.json',
   './icon.svg',
+  // manifest.json is intentionally excluded — always fetched fresh
+  // so Chrome always reads the current orientation setting
 ];
 
 // External assets cached on first use (Google Fonts, etc.)
@@ -75,6 +76,13 @@ self.addEventListener('fetch', e => {
   // Skip non-GET requests and browser extensions
   if (e.request.method !== 'GET') return;
   if (!url.protocol.startsWith('http')) return;
+
+  // Always fetch manifest fresh — never cache it
+  // Prevents Chrome from locking orientation from a stale cached manifest
+  if (url.pathname.endsWith('manifest.json')) {
+    e.respondWith(fetch(e.request).catch(() => new Response('')));
+    return;
+  }
 
   // NAVIGATION (HTML) — Network first so updates always land
   // Falls back to cache if offline
